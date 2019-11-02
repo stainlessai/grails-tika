@@ -15,6 +15,9 @@ apply plugin:"idea"
 apply plugin:"org.grails.grails-plugin"
 apply plugin:"org.grails.grails-plugin-publish"
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 repositories {
     maven { url "https://repo.grails.org/grails/core" }
 }
@@ -36,6 +39,7 @@ dependencies {
     profile "org.grails.profiles:plugin"
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.mockito:mockito-core"
+    compile 'org.apache.tika:tika-parsers:1.22'
 }
 
 bootRun {

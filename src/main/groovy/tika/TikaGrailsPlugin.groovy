@@ -6,6 +6,7 @@ class TikaGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "4.0.1 > *"
+    
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
         "grails-app/views/error.gsp"
@@ -13,10 +14,11 @@ class TikaGrailsPlugin extends Plugin {
 
     // TODO Fill in these fields
     def title = "Tika" // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def author = "Dan Stieglitz"
+    def authorEmail = "dstieglitz@stainless.ai"
     def description = '''\
-Brief summary/description of the plugin.
+This plugin imports Apacke Tika libraries and parsers, and provides a lightweight service for parsing files in 
+applications that use this plugin. This is a Grails 4 port of the TikaParser plugin originally written by Ingo Wiarda.
 '''
 
     // URL to the plugin's documentation
@@ -25,19 +27,19 @@ Brief summary/description of the plugin.
     // Extra (optional) plugin metadata
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'
-//    def license = "APACHE"
+    def license = "APACHE"
 
     // Details of company behind the plugin (if there is one)
-//    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
+    def organization = [ name: "Stainless AI", url: "http://stainless.ai/" ]
 
     // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
+    def developers = [ [ name: "Ingo Wiarda", email: "ingo_wiarda@dewarim.de" ]]
 
     // Location of the plugin's issue tracker.
 //    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
 
     // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
+    def scm = [ url: "http://github.com/stainlessai/grails-tika" ]
 
     Closure doWithSpring() { {->
             // TODO Implement runtime spring config (optional)
