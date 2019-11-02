@@ -7,13 +7,14 @@ buildscript {
     }
 }
 
-version "0.1"
-group "tika"
+version pluginVersion
+group "ai.stainless"
 
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"org.grails.grails-plugin"
-apply plugin:"org.grails.grails-plugin-publish"
+apply plugin: 'java'
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "org.grails.grails-plugin"
+apply plugin: "org.grails.grails-plugin-publish"
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -44,10 +45,10 @@ dependencies {
 
 bootRun {
     jvmArgs(
-        '-Dspring.output.ansi.enabled=always', 
-        '-noverify', 
-        '-XX:TieredStopAtLevel=1',
-        '-Xmx1024m')
+            '-Dspring.output.ansi.enabled=always',
+            '-noverify',
+            '-XX:TieredStopAtLevel=1',
+            '-Xmx1024m')
     sourceResources sourceSets.main
     String springProfilesActive = 'spring.profiles.active'
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
@@ -64,5 +65,5 @@ grailsPublish {
     }
     title = "My Plugin"
     desc = "Full plugin description"
-    developers = [johndoe:"John Doe"]
+    developers = [johndoe: "John Doe"]
 }

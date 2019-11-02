@@ -1,0 +1,11 @@
+language: groovy
+dist: trusty
+jdk:
+- openjdk8
+- openjdk11
+env:
+  global:
+  - TERM=dumb
+  - MALLOC_ARENA_MAX=1
+  - GRADLE_OPTS="-Xmx768m -Xms256m -XX:MaxPermSize=372m -XX:+CMSClassUnloadingEnabled"
+    secure: 0cWvI14cAme0Nsz7mCpX6iK3OvsJqyNrmTja+uFqe+IThPEI1l16rEyB4gDL7BZmjs3RFVl2Yb84fU63FoMm0VhREY68Z7OdgriyzXGdw2jjyYo54cQwq5xC2j16RNNouEp1ubynZu0M1Ovg3mfZWLUeIyYTxwOaFGo4y9gnDYYPltIDXIhSEVTWwKbNs2mrl3ogZ4l7W8XcpNb7ry1De6Ctl/Eb60zxOnIZCLzOSgr71Wd5XmijZSX6Kx7IGzQAr/X7WU4ZRqPuPKm4RqIZ1lzrGmnvWYpW3MnMJjjqRct6E7gf6pXh9DsIHMWrxRsE2fJXjyyIp+fG+BEvRPVZj63AxNLHamZp1R9EN1ClcXyDJo8U4youSMIthDo6HGPEh2fNV4hB+qzUMll/i9jkPxBFXkPiuqtiSEg2Q02wi1EJBJo5tJhyGu+arGC4dAyMLZmyeIpfzs4BdtEMrcJwe0raKvKBRuGEOpQtzrxNZeTDnhK+zoSVyNWp4tMN8ebjtdAwcv1w7qzwzvFKB7ra6KcCOo1714nM+ehjAX1qxwfLe1iNK6nM5kLB+RtuceixH010Ya++LZpDJsZaQXtvsjBdEdkKF6cmde9mMSZ/vZ5lpVSvJs0IQoPxTUi+RBrKue8ryC5SJtw5Yy8aEJ1LCz6Rl3tcqGxDLeEB38OxqqA=
