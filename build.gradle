@@ -15,12 +15,15 @@ apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "org.grails.grails-plugin"
 apply plugin: "org.grails.grails-plugin-publish"
+apply plugin: "maven-publish"
+apply plugin: "signing"
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 repositories {
     maven { url "https://repo.grails.org/grails/core" }
+    jcenter()
 }
 
 configurations {
@@ -53,6 +56,7 @@ bootRun {
     String springProfilesActive = 'spring.profiles.active'
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
+
 // enable if you wish to package this plugin as a standalone application
 bootJar.enabled = false
 grailsPublish {
@@ -66,4 +70,80 @@ grailsPublish {
     title = "My Plugin"
     desc = "Full plugin description"
     developers = [johndoe: "John Doe"]
+}
+
+publishing {
+    repositories {
+        def ossUser = System.getenv("SONATYPE_USERNAME") ?:
+                project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
+        def ossPass = System.getenv("SONATYPE_PASSWORD") ?:
+                project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+
+        maven {
+            name = "mavenCentral"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = ossUser
+                password = ossPass
+            }
+        }
+
+        maven {
+            name = "mavenCentralSnapshots"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            credentials {
+                username = ossUser
+                password = ossPass
+            }
+        }
+    }
+    publications {
+        grailsTikaPlugin(MavenPublication) {
+            artifactId = 'grails-tika'
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = artifactId
+                description = projectDesc
+                url = projectUrl
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        name = "Dan Stieglitz"
+                        email = "dstieglitz@stainless.ai"
+                        organization = "Stainless AI, Inc."
+                        organizationUrl = "https://stainless.ai"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/${githubSlug}.git"
+                    developerConnection = "scm:git:ssh://github.com:${githubSlug}.git"
+                    url = "http://github.com/${githubSlug}/tree/$githubBranch"
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.grailsTikaPlugin
+    
+    /*
+     * To create this file, run:
+     * ```
+     * $ gpg --armor --export-secret-key SHORT_ID >> SIGNING_GPG_KEY
+     * ```
+     * Replace `SHORT_ID` with the id of your key (or the email associated with the key).
+     * DO NOT COMMIT THIS FILE TO GIT! (Use `travis encrypt-file` instead.)
+     */
+    String signingKey = new File("$rootProject.projectDir/SIGNING_GPG_KEY").text
+    def signingPassword = System.getenv("SIGNING_GPG_PASSWORD") ?:
+            findProperty("signingPassword") ?: ''
+    useInMemoryPgpKeys(signingKey, signingPassword)
 }
