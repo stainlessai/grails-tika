@@ -1,15 +1,16 @@
 package tika
 
-import grails.plugins.*
+
+import grails.plugins.Plugin
 
 class TikaGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "4.0.1 > *"
-    
+
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-        "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp"
     ]
 
     // TODO Fill in these fields
@@ -30,18 +31,20 @@ applications that use this plugin. This is a Grails 4 port of the TikaParser plu
     def license = "APACHE"
 
     // Details of company behind the plugin (if there is one)
-    def organization = [ name: "Stainless AI", url: "http://stainless.ai/" ]
+    def organization = [name: "Stainless AI", url: "http://stainless.ai/"]
 
     // Any additional developers beyond the author specified above.
-    def developers = [ [ name: "Ingo Wiarda", email: "ingo_wiarda@dewarim.de" ]]
+    def developers = [[name: "Ingo Wiarda", email: "ingo_wiarda@dewarim.de"],
+                      [name: "Dan Stieglitz", email: "dstieglitz@stainless.ai"]]
 
     // Location of the plugin's issue tracker.
 //    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
 
     // Online location of the plugin's browseable source code.
-    def scm = [ url: "http://github.com/stainlessai/grails-tika" ]
+    def scm = [url: "http://github.com/stainlessai/grails-tika"]
 
-    Closure doWithSpring() { {->
+    Closure doWithSpring() {
+        { ->
             // TODO Implement runtime spring config (optional)
         }
     }
